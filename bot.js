@@ -16,8 +16,9 @@ var log = exports.log = function(msg) {
 var commands = {
     help: require('./commands/help.js'),
     role: require('./commands/role.js'),
-    lua: require('./commands/lua.js'),
-    wago: require('./commands/wago.js'),
+    //lua: require('./commands/lua.js'),
+    //wago: require('./commands/wago.js'),
+    wowprog: require('./commands/wowprog.js'),
     macro: require('./commands/macro.js'),
     ping: require('./commands/ping.js'),
     prefix: require('./commands/prefix.js')

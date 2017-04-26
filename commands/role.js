@@ -24,16 +24,36 @@ module.exports = function (args, user, userID, channelID, bot){
     } 
 
     var vRole = validateRole(args[0].toLowerCase()); // check for valid role, return string
-    if (vRole) {
+    if(args[1]){
+            var vRole2 = validateRole(args[1].toLowerCase())
+    }
+    if (vRole && vRole2){
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
+         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
+        if (selectedRole && selectedRole2) {
+            botFuncs.log("Adding role: " + vRole + " and " + vRole2 + " to " + user);
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
+            botFuncs.sendMsg(channelID, "Adding role: " + vRole + " and " + vRole2 + " to " + user)
+        }
+    } else if (vRole || vRole2) {
+        if(vRole){
+            var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
         if (selectedRole) {
             botFuncs.log("Adding role: " + vRole + " to " + user);
             bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
             botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
         }
     } else {
+        var selectedRole = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
+        if (selectedRole) {
+            botFuncs.log("Adding role: " + vRole + " to " + user);
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
+            botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
+        }
+    }
+    } else {
         var val = args[0];
-
         if ( (val.length === 6) || (val[0] === '#' && val.length === 7) ){
             val = val.replace(/^#/, '');
             if (!/[^0-9a-fA-F]/.test(val)) {
@@ -82,7 +102,7 @@ function searchRoles(serverRoles, inputRole) {
 
 
 function validateRole(iRole) {
-    var roleList = ["druid", "death knight", "demon hunter", "hunter", "mage", "monk", "paladin", "priest", "shaman", "rogue", "warlock", "warrior", "WAalpha"];
+    var roleList = ["druid", "death knight", "demon hunter", "hunter", "mage", "monk", "paladin", "priest", "shaman", "rogue", "warlock", "warrior", "healer", "tank", "dps"];
 
     switch(true) {
         case /dk|death/.test(iRole):
@@ -99,6 +119,7 @@ function validateRole(iRole) {
     for (var vRole of roleList) {
         if (vRole == iRole) {
             if (iRole == "WAalpha") {return "WAalpha";}
+            if (iRole == "dps") {return "DPS";}
             else {return toTitleCase(vRole);}
         }
     } 
