@@ -15,6 +15,10 @@ var rankTable = {}
 
 
 module.exports = function (args, user, userID, channelID, bot) {
+
+    function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
     console.log(args)
     if (args === 'rankings') {
         var sortable = [];
@@ -66,7 +70,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             }
 
             scoreIndex = keyscore.match(/\d/)
-            rankTable[argsArray[0]] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
+            rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
 
             console.log(rankTable)
 
