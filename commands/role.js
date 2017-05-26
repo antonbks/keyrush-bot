@@ -37,22 +37,22 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     var vRole = validateRole(args[0].toLowerCase());
     
-    //var vRole2 = validateRole(args[1])
-    if (args[1]) {
-        var vRole2 = validateRole(args[1].toLowerCase())
-        if (args[0].toLowerCase() == 'demon' || args[0].toLowerCase() == 'death') {
-            if (args[1] === 'Knight') {
-                vRole = validateRole('dk')
-            } else {
-                vRole = validateRole('dh')
-            }
-            if (args[2]) {
-                var vRole2 = validateRole(args[2].toLowerCase())
-            }
-        }
-        //var vRole2 = validateRole(args[1].toLowerCase())
+    var vRole2 = validateRole(args[1])
+    // if (args[1]) {
+    //     var vRole2 = validateRole(args[1].toLowerCase())
+    //     if (args[0].toLowerCase() == 'demon' || args[0].toLowerCase() == 'death') {
+    //         if (args[1] === 'Knight') {
+    //             vRole = validateRole('dk')
+    //         } else {
+    //             vRole = validateRole('dh')
+    //         }
+    //         if (args[2]) {
+    //             var vRole2 = validateRole(args[2].toLowerCase())
+    //         }
+    //     }
+    //     //var vRole2 = validateRole(args[1].toLowerCase())
 
-    }
+    // }
     if (vRole && vRole2) {
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole.toLowerCase()); // validate role exists on server; return role Object
         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2.toLowerCase()); // validate role exists on server; return role Object
