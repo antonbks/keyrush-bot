@@ -54,21 +54,21 @@ module.exports = function (args, user, userID, channelID, bot){
             }
             
     }
-    if (vRole && vRole2){
-        var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
-         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
-        if (selectedRole && selectedRole2) {
+    var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
+    var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
+    if (selectedRole && selected){
             botFuncs.log("Adding role: " + vRole + " and " + vRole2 + " to " + user);
             bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
             bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
             botFuncs.sendMsg(channelID, "Adding role: " + vRole + " and " + vRole2 + " to " + user)
-        }
-    } else if (vRole || vRole2) {
-        if(vRole){
-            var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
+    } else if (selectedRole || selectedRole2) {
         if (selectedRole) {
             botFuncs.log("Adding role: " + vRole + " to " + user);
             bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
+            botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
+        } else if (selectedRole2) {
+            botFuncs.log("Adding role: " + vRole + " to " + user);
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id.toLowerCase()});
             botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
         }
     } 
