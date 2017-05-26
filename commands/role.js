@@ -12,8 +12,8 @@ module.exports = function (args, user, userID, channelID, bot){
     } 
 
     args = args.split(" ")
-    if (args[0] == "remove" && args.length > 1){
-
+     // check for valid role, return string
+    if (args[0] == "remove" && args.length === 2){
         var vRole = validateRole(args[1].toLowerCase()); // check for valid role, return string
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole);
 
@@ -21,11 +21,32 @@ module.exports = function (args, user, userID, channelID, bot){
         bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
         botFuncs.sendMsg(channelID, "Removing role: "+ vRole + " from " + user)
         return
+    } else if (args[0] == "remove" && args.length === 3) {
+        var vRole = validateRole(args[1].toLowerCase()); // check for valid role, return string
+        var vRole2 = validateRole(args[2].toLowerCase()); // check for valid role, return string
+        var selectedRole = searchRoles(bot.servers[serverID].roles, vRole);
+        var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2);
+
+        botFuncs.log("Removing role: " + vRole + " from " + user);
+        botFuncs.log("Removing role: " + vRole2 + " from " + user);
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
+        botFuncs.sendMsg(channelID, "Removing role: "+ vRole + " and " + vRole2 + " from " + user)
+        return
     } 
 
-    var vRole = validateRole(args[0].toLowerCase()); // check for valid role, return string
+    var vRole = validateRole(args[0].toLowerCase());
     if(args[1]){
-            var vRole2 = validateRole(args[1].toLowerCase())
+            if(args[0] === 'Demon' || args[0] === 'Death'){
+                if(args[1] === 'Knight'){
+                    vRole = validateRole('dk')
+                } else if (args[1] === 'Hunter') {
+                    vRole = validateRole('dh')
+                } else {
+                    var vRole2 = validateRole(args[1].toLowerCase())        
+                }
+            }
+            //var vRole2 = validateRole(args[1].toLowerCase())
     }
     if (vRole && vRole2){
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
