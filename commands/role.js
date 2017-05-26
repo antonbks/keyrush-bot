@@ -56,7 +56,7 @@ module.exports = function (args, user, userID, channelID, bot) {
     //     //var vRole2 = validateRole(args[1].toLowerCase())
 
     // }
-    if (vRole && vRole2) {
+    if (!typeof vRole === 'undefined' || !typeof vRole2 === 'undefined') {
         console.log("2 roles received")
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole.toLowerCase()); // validate role exists on server; return role Object
         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2.toLowerCase()); // validate role exists on server; return role Object
