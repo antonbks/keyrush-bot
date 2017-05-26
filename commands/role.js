@@ -18,7 +18,7 @@ module.exports = function (args, user, userID, channelID, bot){
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole);
 
         botFuncs.log("Removing role: " + vRole + " from " + user);
-        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
         botFuncs.sendMsg(channelID, "Removing role: "+ vRole + " from " + user)
         return
     } else if (args[0] == "remove" && args.length === 3) {
@@ -29,8 +29,8 @@ module.exports = function (args, user, userID, channelID, bot){
 
         botFuncs.log("Removing role: " + vRole + " from " + user);
         botFuncs.log("Removing role: " + vRole2 + " from " + user);
-        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
-        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id.toLowerCase()});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
         botFuncs.sendMsg(channelID, "Removing role: "+ vRole + " and " + vRole2 + " from " + user)
         return
     } 
@@ -54,8 +54,8 @@ module.exports = function (args, user, userID, channelID, bot){
          var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
         if (selectedRole && selectedRole2) {
             botFuncs.log("Adding role: " + vRole + " and " + vRole2 + " to " + user);
-            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
-            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id.toLowerCase()});
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
+            bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
             botFuncs.sendMsg(channelID, "Adding role: " + vRole + " and " + vRole2 + " to " + user)
         }
     } else if (vRole || vRole2) {
