@@ -65,7 +65,8 @@ module.exports = function (args, user, userID, channelID, bot){
             bot.addToRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
             botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
         }
-    // } else {
+    } 
+    // else {
     //     var selectedRole = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
     //     if (selectedRole) {
     //         botFuncs.log("Adding role: " + vRole + " to " + user);
