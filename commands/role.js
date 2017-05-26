@@ -36,7 +36,7 @@ module.exports = function (args, user, userID, channelID, bot){
     } 
 
     var vRole = validateRole(args[0].toLowerCase());
-    var vRole2 = validateRole(args[1].toLowerCase())
+    //var vRole2 = validateRole(args[1])
     if(args[1]){
             if(args[0].toLowerCase() === 'demon' || args[0].toLowerCase() === 'death'){
                 if(args[1] === 'Knight'){
@@ -44,7 +44,7 @@ module.exports = function (args, user, userID, channelID, bot){
                 } else if (args[1] === 'Hunter') {
                     vRole = validateRole('dh')
                 } else {
-                    var vRole2 = validateRole(args[2].toLowerCase())        
+                    var vRole2 = validateRole(args[1].toLowerCase())        
                 }
             }
             
