@@ -35,9 +35,9 @@ module.exports = function (args, user, userID, channelID, bot) {
         return
     }
 
-    var vRole = validateRole(args[0].toLowerCase());
+    var vRole = validateRole(args[0]);
     //if (args[1]) {
-        var vRole2 = validateRole(args[1].toLowerCase())
+        var vRole2 = validateRole(args[1])
     //}
     //var vRole2 = validateRole(args[1])
     if (args[1]) {
