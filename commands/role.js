@@ -41,13 +41,16 @@ module.exports = function (args, user, userID, channelID, bot){
             if(args[0].toLowerCase() === 'demon' || args[0].toLowerCase() === 'death'){
                 if(args[1] === 'Knight'){
                     vRole = validateRole('dk')
-                } else if (args[1] === 'Hunter') {
-                    vRole = validateRole('dh')
                 } else {
-                    var vRole2 = validateRole(args[1].toLowerCase())        
+                    vRole = validateRole('dh')
+                }
+                if (args[2]) {
+                    var vRole2 = validateRole(args[1].toLowerCase())
                 }
             } else {
-                 var vRole2 = validateRole(args[1].toLowerCase())
+                if(args[1]){
+                    var vRole2 = validateRole(args[1])
+                }
             }
             
     }
