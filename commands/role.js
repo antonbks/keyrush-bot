@@ -36,11 +36,10 @@ module.exports = function (args, user, userID, channelID, bot) {
     }
 
     var vRole = validateRole(args[0].toLowerCase());
-    if (args.length > 1) {
-        var vRole2 = validateRole(args[1].toLowerCase())
-    }
+    
     //var vRole2 = validateRole(args[1])
     if (args[1]) {
+        var vRole2 = validateRole(args[1].toLowerCase())
         if (args[0].toLowerCase() === 'demon' || args[0].toLowerCase() === 'death') {
             if (args[1] === 'Knight') {
                 vRole = validateRole('dk')
@@ -51,6 +50,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                 var vRole2 = validateRole(args[2].toLowerCase())
             }
         }
+        //var vRole2 = validateRole(args[1].toLowerCase())
 
     }
     if (vRole && vRole2) {
