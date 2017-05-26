@@ -12,6 +12,7 @@ module.exports = function (args, user, userID, channelID, bot) {
     }
 
     args = args.split(" ")
+    console.log(args)
     // check for valid role, return string
     if (args[0] == "remove" && args.length == 2) {
         var vRole = validateRole(args[1].toLowerCase()); // check for valid role, return string
@@ -38,6 +39,8 @@ module.exports = function (args, user, userID, channelID, bot) {
     var vRole = validateRole(args[0].toLowerCase());
     
     var vRole2 = validateRole(args[1])
+    console.log(vRole)
+    console.log(vRole2)
     // if (args[1]) {
     //     var vRole2 = validateRole(args[1].toLowerCase())
     //     if (args[0].toLowerCase() == 'demon' || args[0].toLowerCase() == 'death') {
@@ -54,6 +57,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     // }
     if (vRole && vRole2) {
+        console.log("2 roles received")
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole.toLowerCase()); // validate role exists on server; return role Object
         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2.toLowerCase()); // validate role exists on server; return role Object
         if (selectedRole && selectedRole2) {
@@ -63,6 +67,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             botFuncs.sendMsg(channelID, "Adding role: " + vRole + " and " + vRole2 + " to " + user)
         }
     } else if (vRole || vRole2) {
+        console.log("2 roles received")
         if (vRole) {
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
             if (selectedRole) {
