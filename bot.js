@@ -20,8 +20,9 @@ var commands = {
     //wago: require('./commands/wago.js'),
     wowprog: require('./commands/wowprog.js'),
     macro: require('./commands/macro.js'),
-    ping: require('./commands/ping.js'),
-    prefix: require('./commands/prefix.js')
+    //ping: require('./commands/ping.js'),
+    prefix: require('./commands/prefix.js'),
+    affix: require('./commands/affix.js')
 }
 
 var bot = new Discord.Client({
