@@ -46,6 +46,8 @@ module.exports = function (args, user, userID, channelID, bot){
                 } else {
                     var vRole2 = validateRole(args[1].toLowerCase())        
                 }
+            } else {
+                 var vRole2 = validateRole(args[1].toLowerCase())
             }
             
     }
