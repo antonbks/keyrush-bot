@@ -13,7 +13,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     args = args.split(" ")
     // check for valid role, return string
-    if (args[0] == "remove" && args.length === 2) {
+    if (args[0] == "remove" && args.length == 2) {
         var vRole = validateRole(args[1].toLowerCase()); // check for valid role, return string
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole);
 
@@ -36,10 +36,10 @@ module.exports = function (args, user, userID, channelID, bot) {
     }
 
     var vRole = validateRole(args[0].toLowerCase());
-    var vRole2 = validateRole(args[1])
+    
     //var vRole2 = validateRole(args[1])
     if (args[1]) {
-        
+        var vRole2 = validateRole(args[1].toLowerCase())
         if (args[0].toLowerCase() === 'demon' || args[0].toLowerCase() === 'death') {
             if (args[1] === 'Knight') {
                 vRole = validateRole('dk')
