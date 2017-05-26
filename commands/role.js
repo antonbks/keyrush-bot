@@ -29,8 +29,8 @@ module.exports = function (args, user, userID, channelID, bot){
 
         botFuncs.log("Removing role: " + vRole + " from " + user);
         botFuncs.log("Removing role: " + vRole2 + " from " + user);
-        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id});
-        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole.id.toLowerCase()});
+        bot.removeFromRole({"serverID": serverID, "userID": userID, "roleID": selectedRole2.id.toLowerCase()});
         botFuncs.sendMsg(channelID, "Removing role: "+ vRole + " and " + vRole2 + " from " + user)
         return
     } 
