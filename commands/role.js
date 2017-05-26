@@ -80,7 +80,7 @@ module.exports = function (args, user, userID, channelID, bot){
     //         botFuncs.sendMsg(channelID, "Adding role: "+ vRole + " to " + user)
     //     }
     // }
-    } else {
+    else {
         var val = args[0];
         if ( (val.length === 6) || (val[0] === '#' && val.length === 7) ){
             val = val.replace(/^#/, '');
