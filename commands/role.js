@@ -49,7 +49,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             }
         } else {
             if (args[1]) {
-                var vRole2 = validateRole(args[1])
+                var vRole2 = validateRole(args[1].toLowerCase())
             }
         }
 
