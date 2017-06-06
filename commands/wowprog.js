@@ -2,8 +2,9 @@ var botFuncs = require('../bot.js')
 var http = require('https');
 var request = require('request')
 var cheerio = require('cheerio')
-var rankTable = JSON.parse(fs.readFileSync('./rankings.json', 'utf8'));
+
 var fs = require("fs")
+var rankTable = JSON.parse(fs.readFileSync('./rankings.json', 'utf8'));
 
 // require("jsdom").env("", function(err, window) {
 //     if (err) {
