@@ -43,7 +43,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         })
     } else {
         argsArray = args.split(" ")
-        var api = "https://www.wowprogress.com/character/eu/" + argsArray[1] + "/" + encodeURIComponent(argsArray[0]) + "/json_rank"
+        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0]) + "/json_rank"
 
         console.log(api)
 
