@@ -84,8 +84,19 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     if (vRole && vRole2) {
 
-        if(args[1].toLowerCase() === "demon" && args[0].toLowerCase() === "hunter") {
-            console.log("fuckin demon hunter")
+        if(args[0].toLowerCase() === "demon" && args[1].toLowerCase() === "hunter") {
+            vRole = validateRole("dh")
+            var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
+            botFuncs.log("Adding role: " + vRole + " to " + user);
+            bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id });
+            return
+        }
+        if(args[0].toLowerCase() === "death" && args[1].toLowerCase() === "knight") {
+            vRole = validateRole("dk")
+            var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
+            botFuncs.log("Adding role: " + vRole + " to " + user);
+            bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id });
+            return
         }
 
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
