@@ -3,6 +3,7 @@ var http = require('https');
 var request = require('request')
 var cheerio = require('cheerio')
 var rankTable = {}
+var fs = require("fs")
 
 // require("jsdom").env("", function(err, window) {
 //     if (err) {
@@ -25,6 +26,10 @@ module.exports = function (args, user, userID, channelID, bot) {
         var sortedString = ''
         var keysSorted = Object.keys(rankTable).sort(function (a, b) { return rankTable[b] - rankTable[a] })
         // var keysSortedArray = keysSorted.split(",")
+        console.log(keysSorted)
+        fs.writeFile( "rankings.json", JSON.stringify( keysSorted ), "utf8" );
+        myJson = require("./filename.json");
+        console.log(JSON.parse(myJson))
         for (i = 0; i < 10; i++) {
             sortedString += (i+1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
             //console.log(keysSorted[i])
