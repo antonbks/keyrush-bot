@@ -28,7 +28,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         var keysSorted = Object.keys(rankTable).sort(function (a, b) { return rankTable[b] - rankTable[a] })
         // var keysSortedArray = keysSorted.split(",")
         console.log(keysSorted)
-        fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
+        //fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
         //myJson = require("./rankings.json");
         //console.log(JSON.parse(myJson))
         for (i = 0; i < 10; i++) {
@@ -77,6 +77,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             scoreIndex = keyscore.match(/\d/)
             rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
+            fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
 
             console.log(rankTable)
 
