@@ -89,6 +89,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
             botFuncs.log("Adding role: " + vRole + " to " + user);
             bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id });
+            botFuncs.sendMsg(channelID, "Adding role: " + vRole + " to " + user)
             return
         }
         if(args[0].toLowerCase() === "death" && args[1].toLowerCase() === "knight") {
@@ -96,6 +97,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
             botFuncs.log("Adding role: " + vRole + " to " + user);
             bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id });
+            botFuncs.sendMsg(channelID, "Adding role: " + vRole + " to " + user)
             return
         }
 
