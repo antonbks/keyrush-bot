@@ -84,7 +84,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     if (vRole && vRole2) {
 
-        if(vRole === "demon" && vRole2 === "hunter") {
+        if(args[1].toLowerCase() === "demon" && args[0].toLowerCase() === "hunter") {
             console.log("fuckin demon hunter")
         }
 
