@@ -76,34 +76,34 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     var vRole = validateRole(args[0].toLowerCase()); // check for valid role, return string
 
-    if(args[1]){
+    if (args[1]) {
 
-            var vRole2 = validateRole(args[1].toLowerCase())
+        var vRole2 = validateRole(args[1].toLowerCase())
 
     }
 
-    if (vRole && vRole2){
+    if (vRole && vRole2) {
 
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
 
-         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
+        var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
 
-         console.log(selectedRole)
+        console.log(selectedRole)
 
-         console.log(selectedRole2)
+        console.log(selectedRole2)
 
         if (selectedRole && selectedRole2) {
 
             botFuncs.log("Adding role: " + vRole + " and " + vRole2 + " to " + user);
 
             bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id });
-            
-            setTimeout(function() {
-            
-                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole2.id });    
-            
+
+            setTimeout(function () {
+
+                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole2.id });
+
             }, 100);
-            
+
 
             botFuncs.sendMsg(channelID, "Adding role: " + vRole + " and " + vRole2 + " to " + user)
 
@@ -265,13 +265,13 @@ function validateRole(iRole) {
 
     switch (true) {
 
-        case /dk|death/.test(iRole):
+        case /dk|death knight/.test(iRole):
 
             iRole = "death knight";
 
             break;
 
-        case /dh|demon/.test(iRole):
+        case /dh|demon hunter/.test(iRole):
 
             iRole = "demon hunter";
 
