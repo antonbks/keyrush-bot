@@ -84,6 +84,10 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     if (vRole && vRole2) {
 
+        if(vRole === "demon" && vRole2 === "hunter") {
+            console.log("fuckin demon hunter")
+        }
+
         var selectedRole = searchRoles(bot.servers[serverID].roles, vRole); // validate role exists on server; return role Object
 
         var selectedRole2 = searchRoles(bot.servers[serverID].roles, vRole2); // validate role exists on server; return role Object
@@ -111,7 +115,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
     } else if (vRole || vRole2) {
 
-        console.log("2 roles received")
+        //console.log("2 roles received")
 
         if (vRole) {
 
@@ -265,13 +269,13 @@ function validateRole(iRole) {
 
     switch (true) {
 
-        case /dk|death knight/.test(iRole):
+        case /dk|death/.test(iRole):
 
             iRole = "death knight";
 
             break;
 
-        case /dh|demon hunter/.test(iRole):
+        case /dh|demon/.test(iRole):
 
             iRole = "demon hunter";
 
