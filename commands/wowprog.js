@@ -28,7 +28,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         // var keysSortedArray = keysSorted.split(",")
         console.log(keysSorted)
         fs.writeFile( "rankings.json", JSON.stringify( keysSorted ), "utf8" );
-        myJson = require("./rankings.json");
+        //myJson = require("./rankings.json");
         console.log(JSON.parse(myJson))
         for (i = 0; i < 10; i++) {
             sortedString += (i+1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
