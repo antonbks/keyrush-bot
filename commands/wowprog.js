@@ -93,7 +93,10 @@ module.exports = function (args, user, userID, channelID, bot) {
             fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
 
             console.log(rankTable)
-
+            
+            firstDigit = keyscore.match(/\d/)
+            var vRole = Math.floor(parseInt(keyscore.slice(keyscore.indexOf(firstDigit))[1]))
+            console.log(vRole)
 
             bot.sendMessage({
                 to: channelID,
