@@ -85,7 +85,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             bot.sendMessage({
                 to: channelID,
                 color: 6826080,
-                title: + encodeURIComponent(argsArray[0]).capitalize() + ' - ' + encodeURIComponent(argsArray[1]).capitalize(),
+                title: + capitalize(encodeURIComponent(argsArray[0])) + ' - ' + capitalize(encodeURIComponent(argsArray[1])),
                 embed: {
                     fields: [{
                         name: "Score:",
