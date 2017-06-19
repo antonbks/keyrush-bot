@@ -21,6 +21,13 @@ module.exports = function (args, user, userID, channelID, bot) {
     function capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
+    function searchRoles(serverRoles, inputRole) {
+        for (var roleID in serverRoles) {
+            if (serverRoles[roleID].name === inputRole) {
+                return serverRoles[roleID];
+            }
+        }
+    }
     console.log(args)
     if (args === 'rankings') {
         var sortable = [];
@@ -97,6 +104,8 @@ module.exports = function (args, user, userID, channelID, bot) {
             firstDigit = keyscore.match(/\d/)
             var vRole = Math.floor(parseInt(keyscore.slice(keyscore.indexOf(firstDigit))[1]))
             console.log(vRole)
+            //var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
+            //bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
 
             bot.sendMessage({
                 to: channelID,
