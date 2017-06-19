@@ -43,7 +43,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         })
     } else {
         argsArray = args.split(" ")
-        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0]) + "/json_rank"
+        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0])
 
         console.log(api)
 
@@ -84,10 +84,23 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             bot.sendMessage({
                 to: channelID,
-                message: keyscore + '\n' + ilvl + '\n' + otherData2
+                embed: {
+                    fields: [{
+                        name: "Score",
+                        value: keyscore
+                    },
+                    {
+                        name: "ilvl",
+                        value: ilvl
+                    },
+                    {
+                        name: "SimDps",
+                        value: otherData2
+                    }
+                        ]
+                }
             })
         }
-
         request(options, callback)
     }
 
