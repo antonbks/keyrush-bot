@@ -18,9 +18,9 @@ var rankTable = JSON.parse(fs.readFileSync('./rankings.json', 'utf8'));
 
 module.exports = function (args, user, userID, channelID, bot) {
 
-    function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    }
+    // function capitalize(string) {
+    //     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    // }
     console.log(args)
     if (args === 'rankings') {
         var sortable = [];
