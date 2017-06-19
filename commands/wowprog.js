@@ -85,6 +85,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             bot.sendMessage({
                 to: channelID,
                 embed: {
+                    color: 6826080,
                     fields: [{
                         name: "Score",
                         value: keyscore
@@ -97,7 +98,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                         name: "SimDps",
                         value: otherData2
                     }],
-                    thumbnail: {url: api},
+                    url: api,
                     title: capitalize(argsArray[0]) + ' - ' + capitalize(argsArray[1])
                 },
                 
