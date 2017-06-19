@@ -32,7 +32,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         //myJson = require("./rankings.json");
         //console.log(JSON.parse(myJson))
         for (i = 0; i < 10; i++) {
-            sortedString += (i + 1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
+            sortedString += (i+1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
             //console.log(keysSorted[i])
             //console.log(rankTable[keysSorted[i]])
         }
@@ -43,7 +43,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         })
     } else {
         argsArray = args.split(" ")
-        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0])
+        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0]) + "/json_rank"
 
         console.log(api)
 
@@ -77,7 +77,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             scoreIndex = keyscore.match(/\d/)
             rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
-            fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
+            fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
 
             console.log(rankTable)
 
@@ -97,11 +97,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                     {
                         name: "SimDps:",
                         value: otherData2
-                    }],
-                    thumbnail:
-                    {
-                        url: api
-                    },
+                    }]
                 }
                 //message: keyscore + '\n' + ilvl + '\n' + otherData2
             })
