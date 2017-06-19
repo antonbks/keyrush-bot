@@ -100,12 +100,25 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             console.log(rankTable)
              var serverID = bot.channels[channelID].guild_id;
+             var scoreRoles = ["1400", "1600", "1800", "1900", "2000"]
+             for(var i = 0; i<scoreRoles.length; i++){
+                 vRole = scoreRoles[i]
+                 var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
+                 if(selectedRole){
+                     bot.removeFromRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
+                 }
+             }
+             
+
             var firstDigit = keyscore.match(/\d/)
             var test = keyscore.substr(keyscore.indexOf(firstDigit))
             //console.log(keyscore.substr(keyscore.indexOf(firstDigit)))
             //var pureScore = parseInt(test)
             //console.log(pureScore)
             var vRole = test.substr(0,2)+'00'
+            if(parseInt(vRole) < 1400) {
+                vRole = "pleb"
+            }
             console.log(vRole)
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
             bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
