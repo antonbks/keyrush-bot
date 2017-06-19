@@ -84,24 +84,10 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             bot.sendMessage({
                 to: channelID,
-                embed: {
-                    fields: [{
-                        name: "Score",
-                        value: keyscore
-                    },
-                    {
-                        name: "ilvl",
-                        value: ilvl
-                    },
-                    {
-                        name: "SimDps",
-                        value: otherData2
-                    }
-                        ]
-                }
-                //message: 
+                message: keyscore + '\n' + ilvl + '\n' + otherData2
             })
         }
+
         request(options, callback)
     }
 
