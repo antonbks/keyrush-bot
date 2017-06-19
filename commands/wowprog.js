@@ -105,7 +105,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             //console.log(keyscore.substr(keyscore.indexOf(firstDigit)))
             //var pureScore = parseInt(test)
             //console.log(pureScore)
-            var vRole = parseInt(test.substr(0,2)+'00')
+            var vRole = test.substr(0,2)+'00'
             console.log(vRole)
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
             bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
