@@ -82,10 +82,10 @@ module.exports = function (args, user, userID, channelID, bot) {
             console.log(rankTable)
 
 
-            bot.sendMessage({
+            bot.sendMessage({embed: {
                 to: channelID,
                 message: keyscore + '\n' + ilvl + '\n' + otherData2
-            })
+            }})
         }
 
         request(options, callback)
