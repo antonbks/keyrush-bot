@@ -18,9 +18,9 @@ var rankTable = JSON.parse(fs.readFileSync('./rankings.json', 'utf8'));
 
 module.exports = function (args, user, userID, channelID, bot) {
 
-    // function capitalize(string) {
-    //     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    // }
+    function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
     console.log(args)
     if (args === 'rankings') {
         var sortable = [];
@@ -72,7 +72,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                 var temp1 = keyscore
                 var temp2 = otherData2
                 keyscore = temp2
-                otherData2 = "Unavailable for Healer/Tank"
+                otherData2 = "SimDPS: Unavailable for Healer/Tank"
             }
 
             scoreIndex = keyscore.match(/\d/)
@@ -84,22 +84,22 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             bot.sendMessage({
                 to: channelID,
-                color: 6826080,
                 embed: {
                     fields: [{
-                        name: "Score:",
+                        name: "Score",
                         value: keyscore
                     },
                     {
-                        name: "Ilvl:",
+                        name: "ilvl",
                         value: ilvl
                     },
                     {
-                        name: "SimDps:",
+                        name: "SimDps",
                         value: otherData2
-                    }]
+                    }
+                        ]
                 }
-                //message: keyscore + '\n' + ilvl + '\n' + otherData2
+                //message: 
             })
         }
         request(options, callback)
