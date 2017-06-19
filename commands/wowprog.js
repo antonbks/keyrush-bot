@@ -14,13 +14,13 @@ var rankTable = JSON.parse(fs.readFileSync('./rankings.json', 'utf8'));
 
 //     var $ = require("jquery")(window);
 // });
-
+function capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
 
 module.exports = function (args, user, userID, channelID, bot) {
 
-    function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-    }
+    
     console.log(args)
     if (args === 'rankings') {
         var sortable = [];
@@ -85,7 +85,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             bot.sendMessage({
                 to: channelID,
                 color: 6826080,
-                //title: + capitalize(argsArray[0]) + ' - ' + capitalize(argsArray[1]),
+                title: + capitalize(argsArray[0]) + ' - ' + capitalize(argsArray[1]),
                 embed: {
                     fields: [{
                         name: "Score:",
