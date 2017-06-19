@@ -87,11 +87,6 @@ module.exports = function (args, user, userID, channelID, bot) {
                 message: keyscore + '\n' + ilvl + '\n' + otherData2
             })
         }
-        bot.channelID.send({embed: {
-            color: 3447003,
-            description: keyscore + '\n' + ilvl + '\n' + otherData2
-        }})
-
         request(options, callback)
     }
 
