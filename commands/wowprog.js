@@ -96,9 +96,11 @@ module.exports = function (args, user, userID, channelID, bot) {
                     {
                         name: "SimDps",
                         value: otherData2
-                    }
-                        ]
-                }
+                    }],
+                    thumbnail: {url: api},
+                    title: capitalize(argsArray[0]) + ' - ' + capitalize(argsArray[1])
+                },
+                
             })
         }
         request(options, callback)
