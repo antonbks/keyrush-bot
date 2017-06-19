@@ -101,7 +101,8 @@ module.exports = function (args, user, userID, channelID, bot) {
             console.log(rankTable)
             
             var firstDigit = keyscore.match(/\d/)
-            var pureScore = parseInt(keyscore.slice(keyscore.indexOf(firstDigit))[1])
+            var test = keyscore.indexOf(firstDigit) + keyscore.slice(keyscore.indexOf(firstDigit))[1]
+            var pureScore = parseInt(test)
             console.log(pureScore)
             var vRole = Math.floor(pureScore)
             console.log(vRole)
