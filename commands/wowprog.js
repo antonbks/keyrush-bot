@@ -31,16 +31,29 @@ module.exports = function (args, user, userID, channelID, bot) {
         //fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
         //myJson = require("./rankings.json");
         //console.log(JSON.parse(myJson))
-        for (i = 0; i < 10; i++) {
-            sortedString += (i+1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
-            //console.log(keysSorted[i])
-            //console.log(rankTable[keysSorted[i]])
+        if (keysSorted.length < 10) {
+            for (i = 0; i < keysSorted.length; i++) {
+                sortedString += (i + 1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
+                //console.log(keysSorted[i])
+                //console.log(rankTable[keysSorted[i]])
+            }
+            //console.log(keysSorted)
+            bot.sendMessage({
+                to: channelID,
+                message: sortedString
+            })
+        } else {
+            for (i = 0; i < 10; i++) {
+                sortedString += (i + 1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
+                //console.log(keysSorted[i])
+                //console.log(rankTable[keysSorted[i]])
+            }
+            //console.log(keysSorted)
+            bot.sendMessage({
+                to: channelID,
+                message: sortedString
+            })
         }
-        //console.log(keysSorted)
-        bot.sendMessage({
-            to: channelID,
-            message: sortedString
-        })
     } else {
         argsArray = args.split(" ")
         var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0])
@@ -77,7 +90,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             scoreIndex = keyscore.match(/\d/)
             rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
-            fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
+            fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
 
             console.log(rankTable)
 
@@ -101,7 +114,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                     url: api,
                     title: capitalize(argsArray[0]) + ' - ' + capitalize(argsArray[1])
                 },
-                
+
             })
         }
         request(options, callback)
