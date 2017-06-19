@@ -99,7 +99,7 @@ module.exports = function (args, user, userID, channelID, bot) {
             fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
 
             console.log(rankTable)
-            
+             var serverID = bot.channels[channelID].guild_id;
             var firstDigit = keyscore.match(/\d/)
             var test = keyscore.substr(keyscore.indexOf(firstDigit))
             //console.log(keyscore.substr(keyscore.indexOf(firstDigit)))
