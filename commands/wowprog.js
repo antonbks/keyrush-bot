@@ -32,7 +32,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         //myJson = require("./rankings.json");
         //console.log(JSON.parse(myJson))
         for (i = 0; i < 10; i++) {
-            sortedString += (i+1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
+            sortedString += (i + 1) + ') ' + keysSorted[i] + ' : ' + rankTable[keysSorted[i]] + ' score' + '\n'
             //console.log(keysSorted[i])
             //console.log(rankTable[keysSorted[i]])
         }
@@ -43,7 +43,7 @@ module.exports = function (args, user, userID, channelID, bot) {
         })
     } else {
         argsArray = args.split(" ")
-        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0]) + "/json_rank"
+        var api = "https://www.wowprogress.com/character/eu/" + encodeURIComponent(argsArray[1]) + "/" + encodeURIComponent(argsArray[0])
 
         console.log(api)
 
@@ -72,31 +72,37 @@ module.exports = function (args, user, userID, channelID, bot) {
                 var temp1 = keyscore
                 var temp2 = otherData2
                 keyscore = temp2
-                otherData2 = "SimDPS: Unavailable for Healer/Tank"
+                otherData2 = "Unavailable for Healer/Tank"
             }
 
             scoreIndex = keyscore.match(/\d/)
             rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
-            fs.writeFile( "rankings.json", JSON.stringify( rankTable ), "utf8" );
+            fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
 
             console.log(rankTable)
 
 
             bot.sendMessage({
                 to: channelID,
+                color: 6826080,
+                title: + encodeURIComponent(argsArray[0]).capitalize() + ' - ' + encodeURIComponent(argsArray[1]).capitalize(),
                 embed: {
                     fields: [{
-                        name: "Score",
+                        name: "Score:",
                         value: keyscore
                     },
                     {
-                        name: "ilvl",
+                        name: "Ilvl:",
                         value: ilvl
                     },
                     {
-                        name: "SimDps",
+                        name: "SimDps:",
                         value: otherData2
-                    }]
+                    }],
+                    thumbnail:
+                    {
+                        url: api
+                    },
                 }
                 //message: keyscore + '\n' + ilvl + '\n' + otherData2
             })
