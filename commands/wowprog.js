@@ -100,7 +100,7 @@ module.exports = function (args, user, userID, channelID, bot) {
 
             console.log(rankTable)
              var serverID = bot.channels[channelID].guild_id;
-             var scoreRoles = ["1400", "1600", "1800", "1900", "2000", "pleb"]
+             var scoreRoles = ["1400", "1600", "1800", "1900", "2000", "2100", "pleb"]
              for(var i = 0; i<scoreRoles.length; i++){
                  vRole = scoreRoles[i]
                  var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
@@ -121,7 +121,9 @@ module.exports = function (args, user, userID, channelID, bot) {
             }
             console.log(vRole)
             var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
-            bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
+            if(selectedRole){
+                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
+            }
 
             bot.sendMessage({
                 to: channelID,
