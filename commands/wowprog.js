@@ -120,9 +120,9 @@ module.exports = function (args, user, userID, channelID, bot) {
                 vRole = "pleb"
             }
             console.log(vRole)
-            var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
-            if(selectedRole){
-                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
+            var newRole = searchRoles(bot.servers[serverID].roles, vRole)
+            if(newRole){
+                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": newRole.id })
             }
 
             bot.sendMessage({
