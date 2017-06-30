@@ -86,6 +86,8 @@ module.exports = function (args, user, userID, channelID, bot) {
             //otherData1 = otherData1.replace(/<(?:.|\n)*?>/gm, '');
             otherData2 = otherData2.replace(/<(?:.|\n)*?>/gm, '');
             console.log(keyscore)
+            console.log(ilvl)
+            console.log(otherData2)
             if (otherData2.indexOf('dps error') >= 0) {
                 otherData2 = otherData2.substring(0, otherData2.indexOf('dps error'))
             } else {
@@ -94,38 +96,39 @@ module.exports = function (args, user, userID, channelID, bot) {
                 keyscore = temp2
                 otherData2 = "SimDPS: Unavailable for Healer/Tank"
             }
-            if(keyscore && ilvl && otherData2){
-            scoreIndex = keyscore.match(/\d/)
-            rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
-            fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
+            if (keyscore && ilvl && otherData2) {
+                scoreIndex = keyscore.match(/\d/)
+                rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
+                fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
 
-            console.log(rankTable)
-             var serverID = bot.channels[channelID].guild_id;
-             var scoreRoles = ["1400", "1600", "1800", "1900", "2000", "2100", "pleb"]
-             for(var i = 0; i<scoreRoles.length; i++){
-                 vRole = scoreRoles[i]
-                 var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
-                 if(selectedRole){
-                     bot.removeFromRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
-                 }
-             }
+                console.log(rankTable)
+                var serverID = bot.channels[channelID].guild_id;
+                var scoreRoles = ["1400", "1600", "1800", "1900", "2000", "2100", "pleb"]
+                for (var i = 0; i < scoreRoles.length; i++) {
+                    vRole = scoreRoles[i]
+                    var selectedRole = searchRoles(bot.servers[serverID].roles, vRole)
+                    if (selectedRole) {
+                        bot.removeFromRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
+                    }
+                }
+                var firstDigit = keyscore.match(/\d/)
+                var test = keyscore.substr(keyscore.indexOf(firstDigit))
+                //console.log(keyscore.substr(keyscore.indexOf(firstDigit)))
+                //var pureScore = parseInt(test)
+                //console.log(pureScore)
+                var vRole = test.substr(0, 2) + '00'
+                if (parseInt(vRole) < 1400) {
+                    vRole = "pleb"
+                }
+                console.log(vRole)
+                var newRole = searchRoles(bot.servers[serverID].roles, vRole)
+                if (newRole) {
+                    bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": newRole.id })
+                }
             }
-             
 
-            var firstDigit = keyscore.match(/\d/)
-            var test = keyscore.substr(keyscore.indexOf(firstDigit))
-            //console.log(keyscore.substr(keyscore.indexOf(firstDigit)))
-            //var pureScore = parseInt(test)
-            //console.log(pureScore)
-            var vRole = test.substr(0,2)+'00'
-            if(parseInt(vRole) < 1400) {
-                vRole = "pleb"
-            }
-            console.log(vRole)
-            var newRole = searchRoles(bot.servers[serverID].roles, vRole)
-            if(newRole){
-                bot.addToRole({ "serverID": serverID, "userID": userID, "roleID": newRole.id })
-            }
+
+
 
             bot.sendMessage({
                 to: channelID,
