@@ -85,9 +85,6 @@ module.exports = function (args, user, userID, channelID, bot) {
             ilvl = ilvl.replace(/<(?:.|\n)*?>/gm, '');
             //otherData1 = otherData1.replace(/<(?:.|\n)*?>/gm, '');
             otherData2 = otherData2.replace(/<(?:.|\n)*?>/gm, '');
-            console.log(keyscore)
-            console.log(ilvl)
-            console.log(otherData2)
             if (otherData2.indexOf('dps error') >= 0) {
                 otherData2 = otherData2.substring(0, otherData2.indexOf('dps error'))
             } else {
