@@ -94,6 +94,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                 keyscore = temp2
                 otherData2 = "SimDPS: Unavailable for Healer/Tank"
             }
+            if(keyscore && ilvl && otherData2){
             scoreIndex = keyscore.match(/\d/)
             rankTable[capitalize(argsArray[0])] = parseInt(keyscore.substring(keyscore.indexOf(scoreIndex)))
             fs.writeFile("rankings.json", JSON.stringify(rankTable), "utf8");
@@ -108,6 +109,7 @@ module.exports = function (args, user, userID, channelID, bot) {
                      bot.removeFromRole({ "serverID": serverID, "userID": userID, "roleID": selectedRole.id })
                  }
              }
+            }
              
 
             var firstDigit = keyscore.match(/\d/)
